@@ -1,0 +1,27 @@
+REBEL INK TATTOOS - DEPLOYMENT CHECKLIST
+
+1. Push this entire folder to GitHub.
+2. Create a MongoDB Atlas database and user.
+3. In MongoDB Atlas, allow your Render service to connect.
+4. Create a Render Web Service from the GitHub repository.
+5. Set environment variables in Render:
+   MONGODB_URI = your MongoDB Atlas connection string
+   DB_NAME = rebel_ink
+   JWT_SECRET = long random secret (32+ chars)
+   ADMIN_EMAIL = your real admin email
+   ADMIN_PASSWORD = your real strong admin password (12+ chars)
+6. Deploy.
+7. Test: /api/health
+8. Register a test member from Device A.
+9. Log in to Admin from Device B and approve the member.
+10. Return to Device A. Within 10 seconds the account status should show approved.
+11. Submit an appointment from Device A.
+12. Admin panel should show it within 10 seconds.
+13. Approve it. Client dashboard should show "Appointment approved — you are good to go" on its next refresh.
+14. Add admin notes and appointment notes. Log out and back in from another device to confirm persistence.
+15. Export CSV and verify records.
+
+IMPORTANT:
+- Never put real MongoDB credentials, JWT secrets, or admin passwords in index.html or GitHub.
+- Do not use localStorage as the database. It is only used for the browser session token and language/accessibility preferences.
+- MongoDB Atlas is the persistent source of truth for accounts and bookings.
